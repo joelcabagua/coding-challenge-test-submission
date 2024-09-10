@@ -1,20 +1,15 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent } from 'react';
 
-import $ from "./InputText.module.css";
+import $ from './InputText.module.css';
 
-interface InputTextProps {
+export interface InputTextProps {
   name: string;
   placeholder: string;
   value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputText: FunctionComponent<InputTextProps> = ({
-  name,
-  onChange,
-  placeholder,
-  value,
-}) => {
+const InputText: FunctionComponent<InputTextProps> = ({ name, onChange, placeholder, value }) => {
   return (
     <input
       aria-label={name}

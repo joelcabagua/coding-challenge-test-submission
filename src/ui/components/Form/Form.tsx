@@ -1,23 +1,20 @@
 import React, { FunctionComponent } from 'react';
 
 import Button from '../Button/Button';
-import InputText from '../InputText/InputText';
+import InputText, { InputTextProps } from '../InputText/InputText';
 import $ from './Form.module.css';
 
-interface FormEntry {
-  name: string;
-  placeholder: string;
-  // TODO: Defined a suitable type for extra props
-  // This type should cover all different of attribute types
-  extraProps: any;
+interface FormEntry extends InputTextProps {
+  extraProps?: any;
 }
 
 interface FormProps {
   label: string;
   loading: boolean;
   formEntries: FormEntry[];
-  onFormSubmit: () => void;
+  onFormSubmit: (e: React.ChangeEvent<HTMLFormElement>) => Promise<void>;
   submitText: string;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Form: FunctionComponent<FormProps> = ({
@@ -25,19 +22,22 @@ const Form: FunctionComponent<FormProps> = ({
   loading,
   formEntries,
   onFormSubmit,
-  submitText
+  submitText,
+  handleChange
 }) => {
   return (
     <form onSubmit={onFormSubmit}>
       <fieldset>
         <legend>{label}</legend>
-        {formEntries.map(({ name, placeholder, extraProps }, index) => (
+        {formEntries.map(({ name, placeholder, extraProps, ...rest }, index) => (
           <div key={`${name}-${index}`} className={$.formRow}>
             <InputText
               key={`${name}-${index}`}
               name={name}
               placeholder={placeholder}
+              onChange={handleChange}
               {...extraProps}
+              {...rest}
             />
           </div>
         ))}
