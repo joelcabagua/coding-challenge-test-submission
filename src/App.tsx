@@ -156,7 +156,7 @@ function App() {
       </Section>
 
       <Section variant="dark">
-        <AddressBook resetFields={reset} />
+        <AddressBook />
       </Section>
     </main>
   );
