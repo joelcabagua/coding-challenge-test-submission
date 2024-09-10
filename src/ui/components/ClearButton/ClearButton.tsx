@@ -9,7 +9,7 @@ interface Props {
 
 const ClearButton: FunctionComponent<Props> = ({ clearFields }) => {
   return (
-    <Button onClick={clearFields} variant="secondary">
+    <Button type="reset" onClick={clearFields} variant="secondary">
       Clear
     </Button>
   );
